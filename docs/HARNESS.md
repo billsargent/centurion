@@ -61,8 +61,14 @@ Key API:
   sense=10, RTC guard set by `server.ts`'s `emulator.reset()`).
 - If a run fails, ALWAYS call `h.close()` (or kill node) — otherwise the
   spawned server keeps port 2324 and later runs connect to a stale instance.
-- Output arrives in bursts; non-printable bytes appear as `<0C>`, `<08>`
-  (form feed = screen clear, backspace echoes during date/time entry).
+- The terminal is a **native Centurion CRT emulator** (`server/src/terminal/
+  crt.ts`), not VT100 — formatted screens (`.STA`, forms, menus) use the
+  Centurion cursor-addressing protocol and render correctly over Telnet.
+  `transcript`/`readable()` strip the ANSI the emulator emits.
+- The harness resolves the compiled server for the `server/dist/` layout (works
+  from both ts-node and compiled contexts).
+- Output arrives in bursts; screen clears (`FF`/`ESC G`) are rendered as screen
+  diffs, and backspace echoes appear during date/time entry.
 - `H1` needs **no** trailing CR; date/time fields each need a trailing CR and
   do not auto-advance.
 

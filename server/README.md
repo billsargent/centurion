@@ -8,8 +8,8 @@ It runs the emulation core in Node.js and exposes:
 | Service | Port | Protocol | Description |
 |---|---|---|---|
 | Control Panel | 2323 | Telnet | Front panel registers, LEDs, run/halt status |
-| Terminal 0 | 2324 | Telnet | CRT 0 — VT100 terminal |
-| Terminal 1 | 2325 | Telnet | CRT 1 — VT100 terminal |
+| Terminal 0 | 2324 | Telnet | CRT 0 — native Centurion CRT terminal |
+| Terminal 1 | 2325 | Telnet | CRT 1 — native Centurion CRT terminal |
 | Disk Manager | 2326 | Telnet | Disk image load/create/export |
 | Browser UI | 42646 | WebSocket | Rich browser frontend (connect `cen.html`) |
 

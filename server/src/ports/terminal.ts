@@ -1,38 +1,22 @@
 // ============================================================
 // Telnet Terminal Adapter
-// Implements CharDevice for a Telnet session, providing
-// a VT100-compatible terminal that connects to the MUX/serial
+// Implements CharDevice for a Telnet session, providing a
+// Centurion CRT terminal that connects to the MUX/serial
 // subsystem of the emulated Centurion.
 //
-// Maps incoming Telnet keystrokes to the emulated terminal and
-// converts emulated terminal output to ANSI escape sequences.
+// Incoming Telnet keystrokes are mapped to Centurion terminal
+// codes; emulated output bytes are fed through the CenturionCRT
+// screen-buffer emulator (src/terminal/crt.ts), which renders
+// the CRT screen to ANSI escape sequences.
 // ============================================================
 
 import { TelnetSession } from '../telnet/server';
 import { CharDevice } from '../../../shared/interfaces';
 import {
-    CSI, Color, fg, bg, ansiReset, bold, blink, reverse, dim,
-    cursorPos, cursorHome, clearScreen, clearLine, clearToEnd,
-    cursorHide, cursorShow,
+    Color, fg, ansiReset, bold,
+    clearScreen, cursorHome, cursorShow,
 } from '../telnet/ansi';
-
-// VT100 character attribute mapping
-// Centurion CRTs use a 16-bit character cell:
-//   bits 0-7: character
-//   bit 8-10: foreground color (0-7)
-//   bit 11-13: background color (0-7)
-//   bit 14: blink
-//   bit 15: underline (or reverse, depending on mode)
-
-const FG_COLORS: Color[] = [
-    Color.BLACK, Color.RED, Color.GREEN, Color.YELLOW,
-    Color.BLUE, Color.MAGENTA, Color.CYAN, Color.WHITE,
-];
-
-const BG_COLORS: Color[] = [
-    Color.BLACK, Color.BRIGHT_BLACK, Color.BRIGHT_BLACK, Color.BRIGHT_BLACK,
-    Color.BRIGHT_BLACK, Color.BRIGHT_BLACK, Color.BRIGHT_BLACK, Color.WHITE,
-];
+import { CenturionCRT } from '../terminal/crt';
 
 export class TelnetTerminal implements CharDevice {
     emu_linked = true;
@@ -42,16 +26,12 @@ export class TelnetTerminal implements CharDevice {
     private muxDev: CharDevice | undefined;
     private inputBuf: number[] = [];
     private inputInterval: NodeJS.Timeout | null = null;
-    private lastBuffer = new Uint16Array(80 * 25);
-    private dirty = true;
-    private cursorX = 0;
-    private cursorY = 0;
 
-    // VT100 state
-    private escMode: number = 0;
-    private escParam: number = 0;
-    private escParams: number[] = [];
-    private escBuf: string = '';
+    /** Screen-buffer emulation of the Centurion CRT. */
+    private crt = new CenturionCRT();
+
+    /** Set when receive() produced output that has not been flushed yet. */
+    private outputDirty = false;
 
     name: string = 'TelnetTerm';
 
@@ -65,6 +45,13 @@ export class TelnetTerminal implements CharDevice {
 
         session.onClose = () => {
             this.stop();
+        };
+
+        // When the OS asks the terminal for its status (ESC 0x05), send the
+        // status message back into the MUX input stream.
+        this.crt.onStatusMessage = (bytes: number[]) => {
+            for (const b of bytes) this.inputBuf.push(b & 127);
+            this.flushInput();
         };
 
         this.start();
@@ -89,7 +76,8 @@ export class TelnetTerminal implements CharDevice {
     private start(): void {
         this.inputInterval = setInterval(() => {
             this.flushInput();
-        }, 20); // 50Hz input processing
+            this.flushOutput();
+        }, 20); // 50Hz input processing + screen flush
     }
 
     private stop(): void {
@@ -152,51 +140,14 @@ export class TelnetTerminal implements CharDevice {
 
     // ---- CharDevice implementation ----
 
-    /** bytes still to consume inside a Centurion ESC sequence (0 = normal) */
-    private escRemain = 0;
-
     receive(c: number): void {
         // First MUX output means ROM has configured the MUX
         this.muxConfigured = true;
 
-        // Centurion ESC sequence: 0x1B ESC introduces a control command. The
-        // command byte follows; a few commands (0x10 DLE = set horizontal
-        // address, 0x30 '0' = set visual attribute) take one more arg byte.
-        // We consume these silently — they are screen-control, not text.
-        if (this.escRemain > 0) {
-            this.escRemain--;
-            if (this.escRemain === 0 && (c === 0x10 || c === 0x30)) {
-                this.escRemain = 1; // consume the argument byte next
-            }
-            return;
-        }
-
-        switch (c) {
-            case 0x0C: // form feed: clear screen
-                this.session.write(clearScreen() + cursorHome());
-                return;
-            case 0x0D: // CR
-            case 0x0A: // LF
-                this.session.write('\r\n');
-                return;
-            case 0x08: // backspace (OS clearing a field)
-                this.session.write('\b \b');
-                return;
-            case 0x07: // BEL — no sound in the in-process core
-            case 0x12: // DC2
-            case 0x14: // DC4 (aux port control)
-            case 0x1A: // SUB (cursor up — we're line-oriented)
-                return;
-            case 0x1B: // ESC: begin consuming the sequence
-                this.escRemain = 1;
-                return;
-            default:
-                if (c >= 32 && c < 127) {
-                    this.session.write(String.fromCharCode(c));
-                }
-                // all other control bytes: suppressed (no <hex> tags)
-                return;
-        }
+        // Feed the byte through the CRT screen-buffer emulator; the diff is
+        // rendered to the Telnet client on the next flush tick.
+        this.crt.receive(c);
+        this.outputDirty = true;
     }
 
     can_receive(): boolean {
@@ -226,9 +177,22 @@ export class TelnetTerminal implements CharDevice {
     // ---- Screen management ----
 
     private clearScreen(): void {
-        this.session.write(clearScreen() + cursorHome() + cursorHide());
-        this.cursorX = 0;
-        this.cursorY = 0;
+        this.session.write(clearScreen() + cursorHome() + cursorShow());
+    }
+
+    /**
+     * Immediately render any pending CRT output to the Telnet client.
+     * Normally called on the 20ms tick; exposed for tests.
+     */
+    flush(): void {
+        this.flushOutput();
+    }
+
+    private flushOutput(): void {
+        if (!this.outputDirty) return;
+        this.outputDirty = false;
+        const diff = this.crt.renderDiff();
+        if (diff) this.session.write(diff);
     }
 
     // ---- Public access to input buffer for emulator polling ----

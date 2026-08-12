@@ -35,6 +35,14 @@ dsk2.units[1].image = { type: 'hawk', stride, backing_data: buf, protect: false,
 - ✅ **Telnet end-to-end verified**: `browser-server.ts` exposes the browser MUX
   on `telnet localhost 2324`; the user drives the interactive boot
   (`H1` → `MAX DISK` → date `MMDDYY` → time `HHMMSS` → `CRT0 READY`).
+- ✅ **Native Centurion CRT terminal**: `server/src/terminal/crt.ts` emulates
+  the Centurion CRT protocol (cursor addressing, attributes, clear/erase,
+  insert/delete, status message) headlessly and renders to ANSI over Telnet.
+  Verified: full boot to `CRT0 READY` and formatted `.STA` status display
+  (`server-e2e-test.js`, `crt-unit-test.ts`, `terminal-clean-test.ts`,
+  `os-console.ts`).
+- ✅ **Git repo**: the tree is under version control (see `git log`). Disk
+  images are gitignored (see `server/disks/README.md`).
 - 🔶 The in-process Node.js core (`server.ts`) now **reads the disk correctly**
   (stride 512 + sense 10 + DMA hack removed) and gets past the old `0x7FE8`
   loop, but **stalls at PC `0xA07F`** (loader jumps to unloaded zero memory)

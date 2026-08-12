@@ -7,12 +7,10 @@ How the project is laid out and how the pieces fit together.
 ```
 c:\VS Projects\Emu 0.22\
 ├── cen.html            ← browser UI (buttons, terminals, disk picker)
-├── cen-15/18/19/20.html ← older emulator versions
 ├── cen-server.html     ← browser UI that auto-connects to the server
 ├── main.css            ← UI styles
 ├── js/
 │   ├── cen.js          ← COMPILED emulator (ground-truth engine, ~15k lines)
-│   ├── cen-15..20.js   ← compiled older versions
 │   ├── monarch.js      ← Monaco editor (assembler)
 │   └── require.js      ← AMD loader used by the emulator
 ├── src/
@@ -28,6 +26,7 @@ c:\VS Projects\Emu 0.22\
 │   │   │   ├── emulator.ts        ← in-process core wrapper
 │   │   │   └── amd-loader.ts      ← loads js/cen.js via eval
 │   │   ├── ports/      ← Telnet ports (terminal, control panel, disk mgr)
+│   │   ├── terminal/   ← native Centurion CRT emulator (crt.ts) ★
 │   │   ├── telnet/     ← RFC 854 implementation
 │   │   └── tests/      ← boot tests, browser tests, telnet-e2e-test.ts ★
 │   └── disks/          ← CENTOS_12.IMG, CENTOS_13.IMG
@@ -97,6 +96,27 @@ via a `CharDevice` adapter (`BrowserMuxAdapter`).
 | 2325 | Terminal 1 (CRT 1) |
 | 2326 | Disk manager |
 | 42646 | WebSocket browser UI |
+
+## Terminal emulation (native Centurion CRT)
+
+The Telnet terminals (`ports/terminal.ts`) are **not** VT100 — CENTOS speaks the
+native **Centurion CRT** protocol (a custom, forms/block-mode terminal driven by
+the OS **SOFTERM** driver). The server implements it in
+`server/src/terminal/crt.ts`, a headless port of the browser `VTerm` class
+(`src/cen.ts`):
+
+- 80×24 screen (+ optional 25th status row), 16-bit attribute cells
+  (half-intensity, blink, zero/blank, reverse, underline).
+- Cursor addressing: `ESC Y <row> <col>`, `DLE <col>`, `VT <row>`.
+- `FF`/`ESC G` clear, `ESC K`/`ESC k` erase to EOL/EOS, `ESC L`/`M`
+  delete/insert line, `ESC E`/`e`/`F`/`f` delete/insert char, `ESC 0 <attr>`
+  visual attributes, `ESC 0x05` transmit status message.
+- `CenturionCRT.receive()` consumes the MUX byte stream; `renderDiff()` emits
+  ANSI diffs to the Telnet client (whole rows re-emitted so stripped
+  transcripts/tests stay coherent).
+
+See `server/src/tests/crt-unit-test.ts` for protocol coverage and
+`os-console.ts` for driving the OS.
 
 ## Build & run
 

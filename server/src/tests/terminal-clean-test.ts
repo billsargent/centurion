@@ -53,7 +53,13 @@ async function main() {
     // 2. Feed them through the TelnetTerminal
     const sess = new MockSession();
     const term = new TelnetTerminal(sess as any);
-    for (const b of raw) term.receive(b);
+    // Feed every byte and flush after each so the transcript captures each
+    // intermediate screen state (screen clears overwrite earlier text, so the
+    // final screen alone would only contain the last page).
+    for (const b of raw) {
+        term.receive(b);
+        term.flush();
+    }
 
     // 3. Assertions
     const text = sess.text;

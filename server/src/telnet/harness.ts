@@ -83,10 +83,11 @@ export class TelnetHarness {
 
         if (opts.spawn !== false) {
             // Resolve compiled server.js for both harness layouts:
-            //  - compiled: dist/server/src/telnet/../server.js
-            //  - ts-node : src/telnet/../../../dist/server/src/server.js
+            //  - compiled : dist/server/src/telnet/../server.js
+            //  - ts-node  : server/src/telnet/../../dist/server/src/server.js
             const candidates = [
                 path.resolve(__dirname, '..', 'server.js'),
+                path.resolve(__dirname, '..', '..', 'dist', 'server', 'src', 'server.js'),
                 path.resolve(__dirname, '..', '..', '..', 'dist', 'server', 'src', 'server.js'),
             ];
             const serverJs = candidates.find(p => fs.existsSync(p)) || candidates[0];
