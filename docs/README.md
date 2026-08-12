@@ -53,3 +53,18 @@ Run the automated end-to-end test:
 cd server
 npx ts-node src/tests/telnet-e2e-test.ts
 ```
+
+## License & attribution
+
+This repository is a **modified/derived work** of the CenRE emulator and is
+distributed under the **CenRE License** (see [`LICENSE.txt`](../LICENSE.txt)
+and [`NOTICE.md`](../NOTICE.md) at the repo root).
+
+- **Emulator core & browser UI** (`src/`, `js/`, `cen.html`, `cen-server.html`,
+  `main.css`, `shared/`) — derived from **CenRE, Copyright (c) 2023 Meisaka
+  Yukara**.
+- **Server & docs** (`server/`, this folder) — original additions in this
+  repository.
+
+Per the CenRE license, this modified version is plainly marked as such and is
+not represented as the original software.
