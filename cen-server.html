@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Centurion CPU-6 — Server Monitor</title>
+<link rel="stylesheet" href="main.css">
+<script>
+window.cen_version = 22;
+window.cen_server_mode = true;
+</script>
+<script src="js/require.js"></script>
+<script>
+require.config({
+"map":{'js/cen':{'monaco-editor':'vs/editor/editor.main'}}
+});
+window.addEventListener('load', function() {
+	require(['js/cen'], function(cen) {
+		console.log('Centurion client loaded, connecting to server...');
+
+		// Auto-connect to the emulation server
+		setTimeout(function() {
+			if(window.cen_ts_version !== window.cen_version) {
+				document.getElementById('vercheck').style.display = 'block';
+			}
+
+			// Set the WebSocket address to the local server
+			const wsInput = document.getElementById('cfgwsip');
+			if(wsInput && !wsInput.value) {
+				wsInput.value = '127.0.0.1:42646';
+			}
+
+			// Auto-connect to server
+			const localBtn = document.getElementById('b_local');
+			if(localBtn) {
+				// Trigger remote connection
+				localBtn.click();
+				console.log('Connected to emulation server');
+			}
+
+			// Show disassembly and memory views
+			const disCb = document.getElementById('view_dis');
+			if(disCb) disCb.checked = true;
+		}, 500);
+	});
+});
+</script>
+<style>
+@keyframes alert {
+	from { border-color: #cf2400; }
+	to { border-color: #ff8410; }
+}
+.sysalert {
+	border: 2px solid #cf4400;
+	animation: alert 0.5s alternate 0s infinite both;
+}
+/* Server mode indicator */
+.server-indicator {
+	position: fixed;
+	top: 2px;
+	right: 10px;
+	z-index: 100;
+	font-family: Consolas, monospace;
+	font-size: 14px;
+	color: #46f0a0;
+	background: #0a2a1a;
+	padding: 2px 8px;
+	border: 1px solid #46f0a0;
+	border-radius: 3px;
+}
+</style>
+</head>
+<body>
+	<div class="server-indicator" id="serverStatus">● SERVER MODE — Disconnected</div>
+
+	<div class="popwin" id="wload" style="display:none;top:100px;right:45%;padding:10px 20px 20px 20px;float:right;z-index:90;">
+		<div style="display:flex; flex-direction: column;">
+			<div>Loading File</div>
+			<div class="fpl"><div>File Name:</div><span id="wload_fn"></span></div>
+			<div class="fpl"><div>File Type:</div><span id="wload_ft"></span></div>
+			<div class="fpl"><div>File Size:</div><span id="wload_fs"></span></div>
+			<div class="fpl"><div>Load Type:</div>
+				<div style="display:flex; flex-direction: column;">
+					<span class="cfv"><input type="radio" name="wload_lt" id="wload_lt0" value="0"/><label for="wload_lt0">Raw Binary</label></span>
+				</div>
+			</div>
+			<div class="fpl"><div>Load Address:</div><input class="cfv" id="wload_addr" value="100"/></div>
+			<div>
+				<button style="float:right;margin-top: 20px" id="wload_h">Accept and Load</button>
+				<button style="float:right;margin-top: 20px" id="wload_c">Cancel</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="popwin" id="vercheck" style="display:none;top:42px;left:40%;padding:4px;z-index:100;">
+		<div class="sysalert" style="width:400px;padding:20px;font-size:18px">
+			<div>Version Check Failure</div>
+			<div>Full Reload Required (Shift-F5)</div>
+		</div>
+	</div>
+
+	<div class="popwin" id="memview" style="top:42px;left:100px;display:none">
+		<div class="winfrm"><div>Memory (Server)</div></div>
+		<div style="overflow-y:scroll;height:700px;width: 800px;margin:10px;border:solid 2px #000;position: relative;">
+			<div style="width:1px;height:360448px;position:absolute;left:0;top:0"></div>
+			<div class="fixed memv addr"></div>
+			<div class="fixed memv data"></div>
+			<div class="fixed memv text"></div>
+		</div>
+	</div>
+
+	<div class="popwin" id="diskview" style="top:42px;left:200px;display:none">
+		<div class="winfrm"><div>Disks (Server)</div></div>
+		<div style="overflow-y:scroll;height:700px;width: 800px;margin:10px;border:solid 2px #000;position: relative;">
+			<div style="width:1px;height:4000px;position:absolute;left:0;top:0"></div>
+			<div class="fixed memv addr"></div>
+			<div class="fixed memv data"></div>
+			<div class="fixed memv text"></div>
+		</div>
+	</div>
+
+	<div class="popwin" id="assmview" style="top:42px;left:100px;display:none">
+		<div class="winfrm"><div>Assembler (Server)</div></div>
+		<div style="height:800px;width:1200px;">
+			<div style="display: flex;">
+				<button id="vc_reset">Reset</button>
+				<button id="vc_sync">Sync</button>
+				<button id="vc_clear">Clear</button>
+				<button id="vc_snap">Snap</button>
+				<button id="vc_restore">Restore</button>
+				<button id="vc_step">Step</button>
+				<button id="vc_run">Run</button>
+				<button id="vc_rerun">ReRun</button>
+			</div>
+			<div id="assmedit" style="position:absolute;top:40px;bottom:0;width:500px;"></div>
+			<div id="assmoutp" style="position:absolute;top:40px;left:528px;bottom:0;width:600px;"></div>
+		</div>
+	</div>
+
+	<div class="popwin" id="crtc1" style="position:absolute;top:100px;left:20px;display:none;">
+		<div class="winfrm"><div>CRT1 (Server)</div></div>
+		<div class="termcon">
+			<div>
+				<button>CTRL</button><span>BEL</span><label><input type="checkbox" checked/>Caps Lock</label>
+				<button>F1</button><button>F2</button><button>F3</button><button>F4</button>
+				<button>F5</button><button>F6</button><button>F7</button><button>F8</button>
+			</div>
+			<canvas id="term1" class="term" width="640" height="250" tabindex="0"></canvas>
+		</div>
+	</div>
+
+	<div class="popwin" id="crtc2" style="position:absolute;top:150px;left:70px;display:none;">
+		<div class="winfrm"><div>CRT2 (Server)</div></div>
+		<div class="termcon">
+			<div>
+				<button>CTRL</button><span>BEL</span><label><input type="checkbox" checked/>Caps Lock</label>
+				<button>F1</button><button>F2</button><button>F3</button><button>F4</button>
+				<button>F5</button><button>F6</button><button>F7</button><button>F8</button>
+			</div>
+			<canvas id="term2" class="term" width="640" height="250" tabindex="0"></canvas>
+		</div>
+	</div>
+
+	<!-- Hidden WebSocket address input -->
+	<input type="hidden" id="cfgwsip" value="127.0.0.1:42646"/>
+
+	<div style="background: linear-gradient(#0c2025, #1d2a3a); width: 100%; height: 50px; left: 0; top: 0; position: fixed; z-index: 1;"></div>
+	<div class="sysmenu" id="button_row">
+		<div>
+			<div>
+				<button id="b_step">Step</button>
+				<button id="b_run">Run/Stop</button>
+				<button id="b_r1">1</button>
+				<button id="b_r2">10</button>
+				<button id="b_r3">100</button>
+				<button id="b_r4">1k</button>
+				<button id="b_r5">10k</button>
+				<button id="b_r6">50k</button>
+				<button id="b_r7">100k</button>
+				<button id="b_r8" style="display:none">150k</button>
+				<button id="b_mstep">μStep</button>
+			</div>
+			<div style="flex-grow: 1"></div>
+			<div>
+				<button id="b_local" style="background:#0a3a1a;border-color:#46f0a0;">⟳ Reconnect</button>
+				<button id="b_asm">Asm</button>
+				<button id="b_disks">Disks</button>
+				<button id="b_memory">Mem</button>
+				<button id="b_micro">μCode</button>
+				<button id="b_settings">Settings</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- The rest of the body content mirrors cen.html -->
+	<!-- Include the same body elements as cen.html for all the panels -->
+	<div style="margin-top:50px">
+		<div id="dcregs" style="display:block">
+			<div><div>
+				<span><span>0000</span><span>0000</span><span>0000</span><span>0000</span><span>0000</span><span>0000</span><span>0000</span><span>0000</span><span>0000</span><span>0000</span><span>0000</span><span>0000</span><span>0000</span><span>0000</span><span>0000</span><span>0000</span></span>
+			</div></div>
+		</div>
+	</div>
+
+	<script>
+	// Update connection status
+	function updateServerStatus(connected) {
+		const el = document.getElementById('serverStatus');
+		if(connected) {
+			el.textContent = '● SERVER MODE — Connected';
+			el.style.color = '#46f0a0';
+			el.style.borderColor = '#46f0a0';
+			el.style.background = '#0a2a1a';
+		} else {
+			el.textContent = '● SERVER MODE — Disconnected';
+			el.style.color = '#f04646';
+			el.style.borderColor = '#f04646';
+			el.style.background = '#2a0a0a';
+		}
+	}
+	// Will be updated by cen.js when connection state changes
+	</script>
+</body>
+</html>

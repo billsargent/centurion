@@ -1,0 +1,21 @@
+{
+  "name": "cen-emu-server",
+  "version": "0.22.0",
+  "description": "Centurion CPU-6 Emulator Telnet Server",
+  "main": "dist/server/src/server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server/src/server.js",
+    "dev": "tsc && node dist/server/src/server.js"
+  },
+  "dependencies": {
+    "puppeteer": "^25.6.0",
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/ws": "^8.5.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,13 @@
+# Node
+node_modules/
+dist/
+
+# Disk images (large binary data — keep out of git)
+server/disks/*.IMG
+server/disks/*.BIN
+server/disks/*.FFI
+
+# Logs / OS junk
+*.log
+.DS_Store
+Thumbs.db
