@@ -3,7 +3,7 @@
 The **DEBUG** utility for CPU-6 — a partition-scoped debugger for CPL and
 assembly-language programs. Compiled from the **CPU6 Programmer's Manual, Vol.
 4** (`CPU6 Programmer Manual/04_DEBUG_ocr.pdf`, 10 pp., Centurion Computer Corp
-©1979; local only, not committed to git).
+©1979; committed to this repo).
 
 ## Invoking DEBUG
 

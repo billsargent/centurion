@@ -44,12 +44,14 @@ See [`docs/BOOTING-CENTOS.md`](docs/BOOTING-CENTOS.md) for the full procedure.
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Codebase architecture |
 | [`docs/HARNESS.md`](docs/HARNESS.md) | Driving the OS programmatically |
 
-## What's not in this repo
+## Included data
 
-- **Disk images** (`server/disks/*.IMG` etc.) are gitignored — see
-  `server/disks/README.md`. Restore them from a backup to run.
-- **The CPU6 Programmer's Manual scans** are large copyrighted PDFs kept
-  locally (see `docs/CENTOS-COMMANDS.md` for how to re-extract text).
+- **Disk images** — `CENTOS_12/13.IMG` (boot) plus `FINCH2.BIN`/`TORI.FFI`
+  data disks are committed under `server/disks/` so a clone boots out of the
+  box (see `server/disks/README.md`).
+- **CPU6 Programmer's Manual** — the OCR'd full manuals (`01_UTILITY` …
+  `05_SYSGEN` + cover) are committed under `CPU6 Programmer Manual/`. The raw
+  pre-OCR scans in `Original Scans/` are excluded (redundant, ~160 MB).
 
 ## License & attribution
 

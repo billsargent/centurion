@@ -3,9 +3,8 @@
 A condensed reference for **CPL** — the Centurion Programming Language for
 CPU-5/CPU-6. Compiled from the **CPU6 Programmer's Manual, Vol. 2** (`CPU6
 Programmer Manual/02_CPL_ocr.pdf`, 197 pp., Centurion Computer Corp ©1983),
-which lives locally in this repo but is **not** committed to git (large
-copyrighted scans). Re-extract text with the `pypdf` recipe in
-[`CENTOS-COMMANDS.md`](./CENTOS-COMMANDS.md).
+which is committed to this repo (large copyrighted scans). Re-extract text
+with the `pypdf` recipe in [`CENTOS-COMMANDS.md`](./CENTOS-COMMANDS.md).
 
 For how to create, compile and run CPL programs on the emulator, see the
 "Compiling & running CPL" section of [`CENTOS-COMMANDS.md`](./CENTOS-COMMANDS.md).
@@ -156,5 +155,5 @@ P.CPL HELLO # CRT0
 
 ## Source
 
-- Manual: `CPU6 Programmer Manual/02_CPL_ocr.pdf` (local only, not in git).
+- Manual: `CPU6 Programmer Manual/02_CPL_ocr.pdf` (committed to this repo).
 - OS built-in help + compile/run commands: [`CENTOS-COMMANDS.md`](./CENTOS-COMMANDS.md).

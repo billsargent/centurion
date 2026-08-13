@@ -148,8 +148,8 @@ documents the standard utilities. They are run with the usual JCL assignments
 
 ## Manuals & further reading
 
-- **`CPU6 Programmer Manual/`** (repo root, *not* committed to git) — OCR'd
-  scans: 01 UTILITY (system utilities), 02 CPL, 03 APLIB (application library),
+- **`CPU6 Programmer Manual/`** (repo root, committed) — OCR'd full manuals:
+  01 UTILITY (system utilities), 02 CPL, 03 APLIB (application library),
   04 DEBUG, 05 SYSGEN. Re-extract text with `pypdf`
   (`python -m pip install pypdf`), e.g.:
   ```py

@@ -3,7 +3,7 @@
 **APLIB** is the CPU-6 application subroutine library — a `Type E` file of
 reusable subroutines you link into CPL programs. Compiled from the **CPU6
 Programmer's Manual, Vol. 3** (`CPU6 Programmer Manual/03_APLIB_ocr.pdf`, 118
-pp., Centurion Computer Corp ©1983; local only, not committed to git).
+pp., Centurion Computer Corp ©1983; committed to this repo).
 
 ## How APLIB works
 
@@ -146,6 +146,6 @@ Completion-code interpretation for the jobstream:
 
 ## Source
 
-- Manual: `CPU6 Programmer Manual/03_APLIB_ocr.pdf` (local only, not in git).
+- Manual: `CPU6 Programmer Manual/03_APLIB_ocr.pdf` (committed to this repo).
 - Calling these from CPL: [`CPL-REFERENCE.md`](./CPL-REFERENCE.md).
 - Debugging your programs: [`DEBUG-REFERENCE.md`](./DEBUG-REFERENCE.md).

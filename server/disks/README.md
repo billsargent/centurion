@@ -1,9 +1,8 @@
 # Disk Images
 
-The boot disk images are **not** committed to git — they are large binary
-files (Hawk/Finch formats) and are ignored via the root `.gitignore`.
-
-Restore them from a backup or the original source to run the emulator:
+The boot disk images are **committed** to this repo so a clone is
+self-contained and boots out of the box (Hawk/Finch formats; stride is
+auto-detected from file size by the server and browser):
 
 | File           | Size      | Kind          | Notes                          |
 |----------------|-----------|---------------|--------------------------------|

@@ -46,7 +46,7 @@ dsk2.units[1].image = { type: 'hawk', stride, backing_data: buf, protect: false,
   (`server-e2e-test.js`, `crt-unit-test.ts`, `terminal-clean-test.ts`,
   `os-console.ts`).
 - ✅ **Git repo**: the tree is under version control (see `git log`). Disk
-  images are gitignored (see `server/disks/README.md`).
+  images and the CPU6 manuals are committed (see `server/disks/README.md`).
 - 🔶 The in-process Node.js core (`server.ts`) now **reads the disk correctly**
   (stride 512 + sense 10 + DMA hack removed) and gets past the old `0x7FE8`
   loop, but **stalls at PC `0xA07F`** (loader jumps to unloaded zero memory)
