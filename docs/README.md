@@ -14,6 +14,7 @@ hours of debugging are summarized here.
 | [`CPL-REFERENCE.md`](./CPL-REFERENCE.md) | CPL programming language quick reference |
 | [`APLIB-REFERENCE.md`](./APLIB-REFERENCE.md) | APLIB application subroutine library reference |
 | [`DEBUG-REFERENCE.md`](./DEBUG-REFERENCE.md) | DEBUG runtime debugger reference |
+| [`manuals/`](./manuals/MANUALS-INDEX.md) | Full CPU6 manuals as searchable Markdown |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md) | How the codebase fits together |
 | [`DEBUGGING-JOURNAL.md`](./DEBUGGING-JOURNAL.md) | Chronological debugging history & dead-ends |
 

@@ -17,3 +17,5 @@ __pycache__/
 # Temp extraction artifacts
 tmp-*.txt
 extract-pdf.py
+make-manual-md.py
+scan-md.py
