@@ -11,3 +11,10 @@ server/disks/*.FFI
 *.log
 .DS_Store
 Thumbs.db
+
+# Large copyrighted manual scans (kept locally, not in git)
+CPU6 Programmer Manual/
+
+# Temp extraction artifacts
+tmp-*.txt
+extract-pdf.py

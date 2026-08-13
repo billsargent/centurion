@@ -10,6 +10,7 @@ hours of debugging are summarized here.
 |---|---|
 | [`DISCOVERIES.md`](./DISCOVERIES.md) | Key findings & gotchas (stride bug, sense switches, DMA, MUX) |
 | [`BOOTING-CENTOS.md`](./BOOTING-CENTOS.md) | The verified procedure to boot CENTOS |
+| [`CENTOS-COMMANDS.md`](./CENTOS-COMMANDS.md) | CENTOS command reference (from the OS's built-in help) |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md) | How the codebase fits together |
 | [`DEBUGGING-JOURNAL.md`](./DEBUGGING-JOURNAL.md) | Chronological debugging history & dead-ends |
 
