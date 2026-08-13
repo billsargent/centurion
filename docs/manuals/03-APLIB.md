@@ -60,54 +60,7 @@ Includes 9/15/83 Revisions
 1780 Jay El1l1 Drive
 Richardson, Texas 75881
 Copyright 1983 by Centurion Computer Corporation. All rights reserved. No part of this publication may be reproduced, stored in an information retrieval System, or transmitted in any form or by any means without prior written permission by Centurion Computer Corporation.
-<!-- page 2 -->
-SECTION
-### Introduction
-File
-Data
-Data
-Data.
-Access
-DOTUSE
-GETK
-NEWK
-NEXK
-DELK
-GETKEY
-NEWKEY
-?GKEY
-?NKEY
-IOERR
-STAT
-Input/Output (Console)
-CGET
-?NGET
-NGET
-YNGET 1= Y €S &8 =AQO
-MSG
-MSGN
-LFEED
-CLREOL
-CLREOP
-Input/Output (File)
-GETR
-PUTR
-HLDR
-FRER
-Manipultion
-?EDIT
-CLREC
-EDIT
-MVFILE
-MVREC
-ucC
-LC
-BLTRUN
-STRLEN
-FILL (S/RINC, \*, CHR)
-NOSIGN
-PAGE
-Revised 9/15/83
+<!-- page 2 (front-matter table of contents, omitted) -->
 <!-- page 3 -->
 SECTION PAGE
 Interjob Communication

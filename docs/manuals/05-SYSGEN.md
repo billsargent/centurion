@@ -385,7 +385,7 @@ Not Used
 M200
 Not Used
 DISK DRIVES
-EEEERRIRRRERE D14
+ RRIRRRERE D14
 Bawk ,2-platter
 Pertec, 4-platter
 Pertec, 3-platter
@@ -499,56 +499,7 @@ reserved. No part of this publication may be reproduced, stored
 in an information retrieval system, or transmitted in any form
 or by any means without prior written permission by Centurion
 Computer Corporation.
-<!-- page 18 -->
-i.
-1.
-II.
-IIT1.
-SYSGEN UTILITY
-Installation
-### Introduction
-Initialization
-Operation
-System Disk
-Console Time Lock
-Maximum Logical Unit Number
-Power Line Frequency
-Sector Hold Tables
-Salutation Messages
-Partitions
-Disk Volumes
-Consoles
-Printers
-Spoolers
-Special Units
-Editing
-Main Menu
-Cabinet Specification
-System Disk
-Console Time Lock
-Maximum Logical Unit Number
-Salutation Messages
-Partitions
-Disk Volumes
-Consoles
-Printers
-Spoolers
-Special Units
-Validate/Write Configuration
-Power Line Frequency
-Sector Hold Tables
-End Processing
-IV. Load Procedures
-V. Error Messages
-Page
-OWoOUd b wwWwhN )
-HO
-OB
-D
-WWWwN
--
-w
- -  -1 o
+<!-- page 18 (front-matter table of contents, omitted) -->
 <!-- page 19 -->
 SYSGEN UTILITY
 User Manual
@@ -1775,8 +1726,8 @@ oL . -to next -step. o
 SR -line+--{See: Inltlallzatlon)
 s A to A 65. CRT dlsplays.asszk;: ::-.;j-i-- .
 (M)Jimamms.;uﬁn.gu".xmmﬁ
-(02) CONTROLLER ADDRESS ..... hhhh/ TBR (03) SELECT CODE ............ n/ TBR P (04) MCB .....civvviivnnnenae n == 707
-(05) SECURITY CODE .......... code/none,-
+(02) CONTROLLER ADDRESS   hhhh/ TBR (03) SELECT CODE   n/ TBR P (04) MCB  civvviivnnnenae n == 707
+(05) SECURITY CODE   code/none,-
 -(91) DELETE LINE .. - .. B one
 ENTER PARAMETER NUMBER OR 99 IF FINISHED//#
 Enter-one-of the following:' :

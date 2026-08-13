@@ -19,13 +19,11 @@
 - [Chapter Eight: FUNCTIONS](#chapter-eight-functions)
 - [Chapter Nine: TRANSFER OF CONTROL](#chapter-nine-transfer-of-control)
 - [Chapter Ten: FILE DEFINITION AND CONTROL](#chapter-ten-file-definition-and-control)
-- [Chapter Eleven: FORMATTED INPUT/QUTPUT](#chapter-eleven-formatted-inputqutput)
-- [Chapter Twelve: BINARY INPUT/OUTPUT](#chapter-twelve-binary-inputoutput)
-- [Chapter Thirteen: SPANNED: SECTOR INPUT/OQOUTPUT](#chapter-thirteen-spanned-sector-inputoqoutput)
-- [Chapter Fourteen: MISCELLANEOUS COMMANDS](#chapter-fourteen-miscellaneous-commands)
 - [Chapter Eleven: FORMATTED INPUT/OUTPUT](#chapter-eleven-formatted-inputoutput)
 - [Chapter Eleve:](#chapter-eleve)
+- [Chapter Twelve: BINARY INPUT/OUTPUT](#chapter-twelve-binary-inputoutput)
 - [Chapter Thirteen: SPANNED: SECTOR INPUT/OQUTPUT](#chapter-thirteen-spanned-sector-inputoqutput)
+- [Chapter Fourteen: MISCELLANEOUS COMMANDS](#chapter-fourteen-miscellaneous-commands)
 
 <!-- page 1 -->
 CENTURION
@@ -38,704 +36,75 @@ Copyright 1983 by Centurion Computer Corporation. All rights
 in an information retrieval system, or transmitted in any form
 or by any means without prior written permission by Centurion
 Computer Corporation.
-<!-- page 2 -->
-REFERENCE TABLES
-READY REFERENCE .. cieencecccccccnns cesecrsoassaaa ceeves i
-CPL COMMANDS s cceeevecsocsscnsasaccssscnne cee oo Cese e ii
-FORMATTING CONVENTIONS ..cecese cessscsersecosasannens oo X
-NAMING CONVENTIONS - LABELS, INTEGERS, STRINGS ........ X1
-CPL SYMBOLS teeeeccscsccseosscsssescsscscccncss ceeeerseae xii
-CPL ABBREVIATIONS AND GENERAL TERMS ...cececcccnvcccans xiv
-SAMPLE PROGRAM ccceeeveneescnnsccnocnnacsns seses e e Xx1li
-## Chapter One: INTRODUCTION
-I.1 CPL ceeececeaas T I-1
-I.2 CPL Jobstreams .e.eevesoeancas ce e l.. ...... I-1
-I.3 CPL ProcCeSSiNg eeeeceeseecesosassscccsoocnacccass I-2
-1.4 CPL Execution .eeeeceee et seeenret e I-3
-## Chapter Two: CPL CONCEPTS
-OVERVIEW   6 8 6 6 6 5 5 9 5 6 06 8 0 9 6 0 0 0 8 \* E O S S0 eSS e 0 s e e e 0 II - l
-IT.1 Literal ...ee.. ceeseiersceeras C et e eeseaeasaeues II-2
-IIol'l Usage   8 o 8 8 8 0 06 0 0 5 0 0     06 6 6 0 s s 0 0 05 0 0 0 0 II - 2
-String Literal ..eeieerceccccesenna I1-2
-Integer Literal ....... e eaeen . I11-2
-II.2 Variable ..... et e et eracesasesasseensseeeeaan e I1-4
-IT.2.1 USAQE cveceossscscsaceascnsnocos oo I1-4
-String Variable /.ieiiiececceeenn I1-4
-Integer Varilable ...cceeccencanes I11-4
-I1.3 EXPresSion eceeeececececcccocesscnsocosas ceeseena I1-5
-II.3-1 EXPFESSiOn 8 06 060 060 0000 0006000   e o s 0 00 II\_S
-String Expression ..c.cceeccecenn II-5
-Integer EXPression eeeescecscesces I1-5
-Assembler EXPresSSion eceeeveeeeoss 11-6
-<!-- page 3 -->
-CPL
-TABLE OF CONTENT!
-## Chapter Three: PROGRAM CONTROL
-OVERVIEW @   6 0 8 2 2 0 0 8 5 8 0 G0 S PSS T S S P C L C S S L SN O GBS e S0 e III"l
-ITI.1 SYSTEM . ieeeeerececcncceccscscssnasssosscsascsssnse III-2
-ITI.1.1 USAgEe eceeeeeccsscaancenoancssosccscsss I1I-2
-I11.1.2 Command Format (CPU-5/CPU-6) ..ee.ee III-2
-Program NamMe /ccceeescecsassccsocss III-3
-Program TYPE saveescascessccecscses IT1-4
-Program Line Buffer ............. III-4
-Expansion C/Expansion D ...ccceee III-4
-StACK eseescennocrrosecsoccccacsss III-5S
-III.2 ENTRY   0 5 0 0   0 8 T 0 S S S OSSO LS E LS LSO N 0G0 seeo0eoe III\_6
-III.Z.l Usage   9 8 6 066 40 0 0 8 000 60800000080 III - G
-III.2.2 command Format % 6 6 0 0 08 0 06000 s 000 0 III-6
-I11.3 STOP c e eesoeasssasososssocccssscestsssssssscssaescs III-7
-IIT 3.1 USBgE eesceecssssnssscscscsnsssonssssocs III-7
-Program Logical UnitsS .eeeeceeccs I111-7
-III.3.2 Command FOIrmat esoeeeeescccsosososcscns IT1I-7
-Completion Code .veseeccorens I1I-7
-I11.4 END sttt eeacecaseessesescsasnnossnsnsesssoscsosns I11-9
-III.4.1 USEQgEe ceevertencecccaostsssssnsnsnnons I11-9
-EJECT - Top-of-Form Command ..... ITII-9
-VTAB - Vertical Tab Control .... I1I1-9
-BEEP - Be€ll Character ...ceecoeces IT1I-9
-I11.4.2 Command Format /eeceecsccccocssocnss ITI-10
-I11.4.3 CAULIONS teeesescossosscssccosscosncsaes I1I1-10
-## Chapter Four: COMPILER DIRECTIVES
-OVERVIEW 4o ececcososososososnsossocsoscossnsscaascsaacs ceseessue Iv-1
-Iv.1 TITLE e eeeesoosoososccsccsasnosasosssssasesasacscssnse IV=-2
-Iv.1l.1 USQQJE seesoscccscsscsesossossssccnscan Iv-2
-IVv.1l.2 Command FOrmat eceeecececcscscccsscccos IVv-2
-IV.1l.3 Cautions eceeeeeessccccanase ceseeven e IV-2
-IvV.2 DIRECT/CPL teeceeeecessccnsssoscssosossosconsnssascsscs IV-3
-IVv.2.1 USBQE eeveosssccossancscssssosnancncens Iv-3
-DIRECT cecocesecsccsacoscasascsnssacscse IV-3
-CPL teesoveesccsaccoses ce s essccese IV-3
-Iv.2.2 Command FOIMAL ceeeeeenceccenasnneses Iv-3
-Iv.2.3 Cautions eceeeecooccese c e s e e s st e s e ess IV-3
-<!-- page 4 -->
-IV.3
-IV. 4
-Iv.5
-IvV.6
-IV.7
-PRINT ON/PRINT OFF,COM/PRINT OFF ....
-IV'3'1 Usage .....'......'.......
-IV.3.2 Command Format
-IV. 3.3 Cautions eeeeses
-PAGE EJECT/EJECT  ecevasc.n
-Iv.4.1 US3ge eeveooscs
-IV.4.2 Command Format
-SPACE ...........l....l.
-IVv.5.1 USage sesecece
-IV.5.2 Command Format
-COPY e 86 9 66 85 0 8 060 0 0 0 00000
-IVv.6.1 USage eseesens
-IV.6.2 Command Format
-Subfile ...
-IV.6.3 Cautlions ee.ed
-Comment Character /e..se.e
-Iv.7.1 Usage eceesceas
-IV.e7.2 Command Format
-Continuation Lines .....
-Iv.8.1 US8QgE eevcevocs
-Reverse Slash cceesceoeens
-Iv.9.1 USage eseaeceen
-IV.9.2 Cautions .e....
-## Chapter Five: PROGRAM LINKAGE
-### OVERVIEW
-V.l
-e 2 86 06 0 0 6 08 0680 00600000
-RNAL .......'I...Q..
-1 USage eeeoeecs
-2 Commané Format
-3
-### Command Format
-Cautions ...
-Cautions eesecese
-TRYPOINT secocesccososse
-. 2.1 USage eeseesoene
-2.2
-2.3
-CPL
-" o0 0 0 s 0 00 IV-4
-e s o 00 0 0 00 IV-4
-1
-NN
-(
-(
-f:(1(|1(
-((
-wWw
-W
-W
-<!-- page 5 -->
-CPL
-## Chapter Six: RESERVING MEMORY
-OVERVIEW .....I...'....l....'.......'...l...l.....'.... 'JI\_l
-vI.l INTEGER ceeoooovscscssscscsossscscssosesncosscsae VIi-2
-VvIi.l.1l USBGE seeeeessssscsscsasasesocnscncs VI-2
-vIi.l.2 Command Format sececeececascsasssansas vi-2
-vIi.1l.3 CAULiONS cesseecestscncccsssanssssense vi-2
-vIi.2 SET v evvesossesossssscscsssossnssosnccssonsesesscs vI-3
-vIi.2.1 USBJE cecenssoscsosscsscsscssesoccscscs VI-3
-vi.2.2 Command FOrmat scececescoscsscsocncescs VI-3
-vIi.2.3 CaAaULiONS ceescoscasnsssosscscsssscsascss vIi-3
-VI.3 STRING eoeeeoeccesssscsssossssssossssssccsscscssecas vVIi-4
-vIi.3.1 USQgEe eesseosesscsesssscccs Vi-4
-Variable Length Stringeeeeceeeesss VI-4
-vIi.3.2 Command FOrMaLt eceeeescsscsocvssscence vVIi-4
-VIi.3.3 CaAaULiONS ceeovececssssssssssoasnsnssas VIi-5
-vIi.4 DEFINE evesaveccssasssasscscssnasssoessosscssossos VI-6
-vi.4.1 USBQE eeeeeossassosocssenssccocascns VIi-6
-vIi.4.2 Command Format ceeeecessccsccccocsccns vVIi-6
-Vvi.4.3 CAULIONS covvoescovsssssasocsssnnsses V-6
-VI.S BUFFER o.o.oo-oo-oooo-o-o-ooooooooo.ooo..oo-n- . VI-7
-VI.S.l Usage e 5 6 86 86 8 6 0 8 0 0 0 0   960 S0 S0t VI"7
-VIO 50 2 Command Format   8 8 @   060 060 8 0 200 e 00 VI - 7
-VvIi.6 TABLE /ceeaseecsscsscsassssscsssnsosssoscscssssocsns vi-8
-VI.6.1 USBQE eeeosssssseccascosccsoccscscscs VI-8
-VIi.6.2 Command Format seceveseccsccoroccacne VI-R
-Integer Table .ceeiececccanccecne VI-8
-String TaADle /isevsevcccccacceccs VI-8
-VIi.6.3 CaUtToONS ceeeseseasossscssssoscnaccacs VIi-9
-## Chapter Seven: CPL ASSIGNMENT STATEMENTS
-OVERVIEW o-ou--ooo.---...o-c.oo..oo.oo..oooo.ooo.ooooao VII-l
-VIIol Integef Assignment Statements   8 0 0 0 0 08 80060 00 00 VII-2
-VII-lol Usage € 66 0 5 9   5 0 60 0 8 8 S8 0080000l VII-Z
-Mathmetical Processing /eceeeceece.. VII-2
-VII.1.2 Command FOrmat   6 8 @ &6 0 0 0 0 98 s s0e e VII-3
-<!-- page 6 -->
-CPL
-VII.2 String Assignment Statements ...ccccccececrons VII-5
-VII.2.1 Usage 5 8 & 8 0   0 0 0 T 8 S 68 0 S 0SSO eSS0 0 s 000 VII-S
-VII.2.2 Command FOI'mat % 2 8 8 2 8 8 5 0 0 000 s e VII"S
-VII.2-3 CaUtionS @   5 6 0 0   8 0 0 P O 0 S0 &0 00l 000 a0 VII"S
-VII.3 INCREMENT/DECREMENT .ccececeans ceseensesannn .o VIiIi-7
-vii.3.1 USQQE@ eeeeccecsoossssssscnsassascsnsns VII-7
-VIii.3.2 Command Format eceeecieeceossaccsconsce VII-7
-## Chapter Eight: FUNCTIONS
-OVERVIEW @ 9 8 6 8 8 8 6 6 6 8 2 6 6 0 9 9 0 S P S8 0 LS L ST S s e o0 VIII - l
-VIIIol ABS @ 6 6 @ 0 0 0 0 0 0 005 00 00 s 00 0 @ 5 6 0 s 8 s 0 08 06 0600000 VIII-Z
-VIIIul.l Usage   @ @ 06 2 0 6 6 8 8 80 0 0 00 80 00   6 s 0 0 0 8 0 0 VIII' - 2
-VIII.1l.2 Command Format ........ ceeccesasaean VIII-2
-VIII.2 LEN teeeececccsassnsens ceceeressaasas s ecosaeas VIII-3
-VIIT.2.1 USBQE .eeessonrcasasoscsssccnsasons .o VIII-3
-VIII.2.2 Command Format .eeeeeceoscccescs e s e s e VIII-3
-VIII.3 MAXO .   8 6 & @ 6   8   0 0 0 0 5 S B LSS LTSS E P OL LS   o 0 VIII-4
-VIITI.3.]l USAQE /ceeeaocecsosssssssscoscocsosccssss VIII-4
-VIII.3.2 Command Format /ceeeeescocscocsccocseos VIII-4
-VIII-4 MIN   6 6 06 9 0 6 6 0 6 8 6 0 0O 5 0 O 0 G S S OGS S S PSS OO LSS e e VIII-S
-VIIT.4.]l USAGQJEe ceeeevecsscsssnoscscsns cese s VIII-5
-VIII.4-2 Command Format   6 0 0 0 6 s 0 00 00 0600 000000 VIII-S
-VIII.S MOD 4t eevecoccoacscesososasssssssccssscsssscas s VIII-6
-VIII.5.]1 USGQEe ceveecsvesnsoscsscocccocsnscsny VIII-6
-VIII.5.2 Command Format eceeeeceevecaacse cee e VIII-6
-VIII. 6 ROUND ticevacescocosccoasosnansassesaocecsanccss VIII-7
-VIII 601 Usage   6 8   0 6 6 8 5 6 5 6 0 8 5 6 0 5 O 6 0 0 0L 8V e VIII - 7
-VIII.6.2 Command Format ceeececcescossosscccscs VIII-7
-VIII.6.3 CaUtiOﬂS @ 6 6 6 086 08   0 8000008 08080 000 \* o 0 s 0 VIII-7
-VIII 7 SGN R EEEEEEE NI A A AT R S R B A I R A B B 2 N 2 R A 4 VIII-8
-VIII.?.l Usage   9 0 0 0   00 0 0 60 0 8 0TS E eSS0 s VIII - 8
-VIII.7.2 Command Format ...cecccececcn.n. ceeencan VIII-8
-<!-- page 7 -->
-CPL
-TABLE OF CONTENT!
-## Chapter Nine: TRANSFER OF CONTROL
-OVERVIEW oo-..ooo'-oa-a-'oocooocnc---oo.....-.o-oon-o-ou Ix-l
-IX-l Labels @ & 6 6 6 0 0   5 0 5 00 0P S T T GG O LS L L S GBI s IX'2
-Ix.lol Usage   6 86 0 06 6 0 0 0 0 0 00 0 80 0000 008000 e IX\_2
-IX.1.2 Command Format .eceecescocccnsassoas IX-2
-Label Name Formation ....... e e IX=-2
-IX 103 CaUtionS     6 0 0 60 0685 0 0 00 0800 0o     o 0 s 0 s o . IX-2
-IX.2 GO TO eeeeteeessesccsssssssssossssscasssacsoess .o IX-3
-IX.2.1 USBQJE cevsssosoccccsonssssnsncsacsscs IX=-3
-IX.2.2 Command Format eeeeececcecsscccas ce e IX-3
-Conditional GO TO eeeeeeavoosonocs IX-3
-Unconditional GO TO cevevruenaans IX-3
-IX.B LOOP I I O A R I R I T T R R S S I I R I I I R A A L) e o 0 @ IX-4
-IXJBOl Usage     o 0 0 0 0   @ 2 8 6 0 6 0 0 0 0 00 e B0 s e e IX"4
-IX.3.2 Command Format ......... ceceeasons "ee IX-4
-IX.3-3 CaUtionS ooooooooooooooooooo   s o 0 0 0 0 . IX\_S
-IX.4 LOOP WHILE et eencecosoacconncns cesersescasas e IX-6
-IX.4.1 USBQE tevveescassaononcsasasssoansns IX-6
-IX.4.2 Command Format eceeecececsoscoscsssnscecse IX-6
-IX.4.3 CaUtionNsS seeeesncccsasassscnsas se s IX-6
-IX.5 END LOOP coeeeaoecsossosscsassscsessassesssaassaass I1X-8
-IX.5.1 USBGE teeesoesosssesosnsosonsnsanoesnocs IX-8
-IX.5.2 Command Format .eeeceececesonssscncs IX-8
-IX.5.3 CautionNsS seescocesnsce et e e e ensacn s IX-8
-IX06 CALL   % 0 0 0 0 0 0 0 s s 8 0 0 0 e   8 0 8   0 4 0 0 0 % 8 0 s 0 e 0 s 0000 0o Ix-g
-IX.6.1 USSBgE eeeeesoenoconennoses e e s s enanes IX-9
-IX.6.2 Command Format ecececeeccecsnccsnsssscse IX-9
-IX.6.3 Cautions eeeees t e e s es e s e s e s aeeas e IX-9
-IX-7 SUBROUTINE o 0 0 s 0 0 0 0 0   @ 060 8 2 & 6 0 6 00 s e s 0 s s e IX\_lO
-IX.7.1. Usage   6 6 6 2 0 6+ 8 0 0 60 0P 0 s 0200 s NG e s 0o IX - lO
-IX.7.2 Command Format eceeeescececccsacascncse IX-10
-Name Formation eeeceee.e. et e e ocene .. IX-10
-IX.8 RETURN/RETURN TO   8 5 5 @ 5   6 0 0 0 8 0 0 F G DO S 00 e IX - ll
-IX-801 Usage -----     8 6 06 0. 8 60 05 000 0600580000000 IX-ll
-IX.8.2 Command Format eceeeececcons s e s cesscns IX-11
-IX.8.3 CAULIONS ceceeeseccosososaconsoneesses IX-11
-<!-- page 8 -->
-IX.9
-IX.10
-IX.11
-IX.12
-RETRIEVE ... iieeunnn.. c ettt e e
-IX.9.1
-I1X.9.2
-IX.10.2
-IX.10.3
-US3GE@ tiviininnnnennnnn.
-Command Format .........
-Type Designation ....
-Cautions ........iuun...
-USAQEe tiieiinennennennnn
-IF-ELSE wevvevnnnnnn.
-IF-ELSE DO ......... .
-IF-DO vefvreinnnnnnn..
-IF-DO-ELSE .v.uuuuenn..
-IF-DO-ELSE DO .......
-IF-Null-ELSE ........
-IF-DO-Null-ELSE .....
-TF(X) et s ieennnen.
-Command Format .........
-Cautions tueeueeeeenwnenn.
-IFSTRING/IFS tiiiieennnnncnnnnnen.
-IX.11.1
-IX.11.2
-IX.11.3
-END DO
-IX.12.1
-IX.12.2
-USage .uiiiiinnnnnnnnna.
-IFSTRING .vuveuvnen...
-IFSTRING-ELSE .......
-IFSTRING-ELSE DO ....
-IFSTRING-DO .........
-IFSTRING-DO-ELSE ....
-IFSTRING-DO-ELSE DO .
-IFSTRING-Null-ELSE ..
-IFSTRING-DO-NUll-ELSE
-Command Format ...e......
-CaULIONS tiiin st eeenenns
-USAge vttt einenennennn
-Command Format .........
-## Chapter Ten: FILE DEFINITION AND CONTROL
-### OVERVIEW
-X.1
-Usage ....cuiiiiennnnn...
-Command Format .........
-Keyword Designation .
-Caution ..... et .o
-CPU-5/CPU-6
-CPL
-Fevision 03/15,/83
-<!-- page 9 -->
-CPL
-ge] z R B T T S
-Usage ...
-| X
-X
-X
-O
-NN
-Mm
-XKoX
-X
-X
-|
-Y
-OV
-OY
-Oy
-w
-N O ] 3 3 o] o] o) 2] o - 3 ] ot
-Cautions I T,
-[
-/
-wwwo
-s
-wn
-wN=m
-R I I T T SO, L I R T R TSP,
-Usage ........... et ettt ettt
-Command Format ......... e et e e
-Cautions .....iiuiuiiiiunnn i, XX
-XD
-b -
---
-HKoxX
-X
-X
-l
-z
-SO
-s
-m
-.
-W-
-H r m oo-ooo..o.o-o.o-.o-o.oo..co.--. ------
-Usage D .
-Command Format " et s et et e et eaanee e
-Cautions Sttt e ettt e e ettt e e XX
-X
-m
-XX
-X
-X
-L 0
-@
-W
-W
-M
-XX
-XD
-LI
-S
-S
-wW
-N-
-Usage ..viiinnnnnnennnnn.. e e e e e X-9
-Command Format ................... .o X--9
-Cautions R X-9
-X.6 SETFORM TSt ettt et ettt ettt X-10
-Usage I I I I I T X-10
-Command Format S et e e e et e e e e e X-10 )
-X
-[e)}e) N
-= jav] B . X-11
-Usage t.vuiniinnennnnnnnennnnn.. e X-11
-Command Format D X-11 XX
-wn
--N
-o-
-N
-X.8.1 Usage ...veeninnnnennnn... C et e e X-12
-X.8.2 Command Format th e e e et e et e e X-12
-## Chapter Eleven: FORMATTED INPUT/QUTPUT
-OVERVIEW ..... M XI-1
-XI.1 FORMAT L c e ettt Xi-2
-XI.l.1 USage t.vniiiiiiitiieeennn. XI-2
-XI.l.2 Command FOIrmat .......oeeeeunnonnn.... XI-3
-"N" and "D" Field
-Specifications (INPUT) ........ XI-4
-"N" and "D" Field
-specifications (QUTPUT ....... XI-5
-"C" Field Specifications ....... XI-6
-"X" Field Specifications ....... XI-7
-XI.1.3 Cautions .. ... . . . . o 0 XI1-7
-<!-- page 10 -->
-CPL
-L O B XI-9
-XI1.2.2 Command Format ............ e et ee XI-9
-Sectors .,..... C et e e e ettt XI-9
-STATUS vttt ittt ettt e e eeeen, XI-9
-WRITE ittt ittt it ittt eeeeeeeee, e e XI-11
-XI.3.1 Usage .....0ccu... e ettt XI-11
-XI.3.2 Command FoOIMat . vuueieeenseeeeeeennnnn XI-11
-Sectors ......c00... e et s e XI-11
-STATUS it ittt ettt eeeeennn c s e e e e XI-12
-XI.3.3 CAULIONS tii it itteenneneonenennnnun. XI-12
-WRITEN/WRITN i iitteeeeneeeeenseeennn. t e e e e XI-13
-XI.4.1 Usage ........ et et ettt e e XI-13
-XI.4.2 Command Format .......e..... et e e e XI-13
-STATUS it ittt ittt e teeennennnn .o XI-13
-XI.4.3 CAULIONS ittt nteneneennnenennenn. XI-14
-D G 0 XI-15
-XI.5.1 Usage ..... ettt e e .. XI-15
-XI.5.2 Command FOIMat v.uvieewneeeeeneeennnn XI-15
-STATUS i ittt ittt eeennnnn. . XI-15
-XI.5.3 Cautions tuvereneneneeeennnn et e e XI-16
-ENCODE ittt ittt ittt teeenennennen, .o XI-17
-XI.6.1 USBGEL ttvernnvoeecenennnea c e et XI-17
-X1.6.2 Command FOIrMat .uiuwiueuwenseeeeeeeeennn. XI-17
-STATUS ittt ittt it ittt e eeenaennn XI-18
-XI.6.3 CaAULIONS vt iinnnneeeneeeennnnnnnen. XI-18
-NOTE .. i eeeeenenan e e 4 e e s e et st e e s e e e XI-19
-XI.7.1 USaAge t. ittt it iiennnnenas et et XI-19
-XI.7.2 Command FOrmat ...eueeeneeneeenenennn.. XI-19
-XI1.7.3 CaUtionNS t.iiiiienneeeennnnnn. e XI-19
-O c s e e e e XI-20
-X1.8.1 US8BJE vt veeeennennas e e e et et e XI-20
-X1I.8.2 Command FOIrmMat ..uuiueeueeeeeeeeennnn.. XI1-20
-X1.8.3 Cautions ........ e s e e et e eeenas XI-20
-Revision 03./15/83
-<!-- page 11 -->
-XI.9
-## Chapter Twelve: BINARY INPUT/OUTPUT
-### OVERVIEW
-XII.1
-XII.2
-XII.3
-XII.4
-REWRITE ............ et e e aaa
-CPL
-XI1.9.1 Usage ........cuuun.... St e e et
-XI.9.2 Command Format ............... e e e e
-STATUS .......
-XI1.9.3 Cautions ....... .
-RECORD/ENDREC .......e0u....
-XII.1l.1 Usage ..iveenenn..
-XIT.1.2 Command Format ..
-XII.1l.3 Cautions ........
-READB ..t iiin et eteeennnn.
-XII.2.1 Usage .....vev0v....
-XII.2.2 Command Format ...
-STATUS .........
-XII.2.3 Cautions ........
-WRITEB ...... S e e s e e v e s eeeaa
-XII.3.1 Usage c.oveunno..
-STATUS .......
-XI1.3.3 Cautions ........
-HOLD/FREE ... e eiineuwnnnn.
-XII.4.1 Usage ...........
-XII.4.2 Command Format ..
-STATUS .......
-XII1.4.3 Cautions ........... .o
-L A I ) o o s o
-  & o 0 0 s 0 s 0000 0
-  \* s 0 0 0 0 00 .. .
-## Chapter Thirteen: SPANNED: SECTOR INPUT/OQOUTPUT
-### OVERVIEW
-XIII.1 GETR ........ I T
-XIII.1l.]1l US89e uueveuwnnun.n.. oo
-XIII.l.2 Command Format ..
-Relative Key .
-STATUS ..... .
-Revision
-X1-22
-XI1I-4
-XI1I-4
-XI1I-4
-XI1-6
-XI1-7
-XI1I-7
-03/15/83
-<!-- page 12 -->
-XIII.2
-XIII.3
-PUTR
-XIIT.2.1
-XIIT.2.2
-### Usage
-Command Format ....
-Relative Key ..
-CPL
-STATUS
-HLDR/FRER
-XIIT.3.1
-XIII.3.2
-### Usage
-STATUS
-### Command Format
-## Chapter Fourteen: MISCELLANEOUS COMMANDS
-XIv.l1
-XIV.2
-XIV.4
-XIV.5
-CURP/CURSOR/CURB/CURS
-XIiv.1l.1 Usage
-CURP ....
-CURSOR
-CURB
-CURS ....
-XIv.1l.2
-XIv.1.3 Cautions
-DUMP
-XIv.2.1
-XIv.2.2
-XIVv.2.3
-### Usage
-### Cautions
-LOAD
-XIv.3.1
-XIV.3.2
-### Usage
-Mask
-Label ...
-Option ..
-STATUS ..
-Cautions ..
-XIV.3.3.
-ORIGIN
-XIv.4.1
-XIv.4.2
-XIV.4.3
-### Usage
-### Cautions
-EQUATE
-XIV.5.1
-XIV.5.2
-### Usage
-### Command Format
-Command Format ............
-Command Format ............
-    \* e 000 % e s s e 000 . a0
-A O T Y
-  9 8 2 00 0 0080000800 e a0
-Command Format ........
-  o o 2 s 0 s s 0 s 0 e e s
-  & 9 2 e s 0 000 00 e
-  8 8 2 0 0 e e 0 s s e
-  & 2 0o e 0 e 0 00 s 008
-L I I I I T S,
-Command Forma+%
-.......... LI Y
-oooooooo e o
---------- o o o
-XIII-4
-" s 0 e
-XKIII-%
-......
-XIv-2
-XIv-2
-et XIV-2
-XIvV=-2
-XIv-2
-XIv-3
-ooooo
-..... XIV-5
-s e e e XIv-7
-```
-...... P XIiv-7
-......... XIvV-7
-```
-
-c e et e e XIiv-8
-......... XIv-8
-c e e e e XIv-9
-e e e .- XIV-10
-e et e e XIv-10
-<!-- page 13 -->
-XIV.6
-XIv.7
-XIV.8
-XIv.9
-XIV.10
-XIv.1l1
-INDEX
-### Usage
-Command Format .
-Cautions ......
-LDATE/SDATE .............
-XIV.7.1
-XIV.7.2
-XIv.7.3
-Usage ..... c oo
-### Command Format
-Keyword Designation
-CPU--5/CPU-6
-CPL
-e e it e et c et XIv-11
-  o o o o o
-STATUS .....
-Cautions ......
-Subscripted Variables ...
-XIv.8.1
-TBLGET .
-XIV.9.1
-XIV.9.2
-XIvV.9.3
-TBLPUT
-XIv.1lc.1
-XIv.10.2
-XIv.10.3
-ADRLST .
-XIvV.1l1l.1
-XIV.11.2
-Usage .........
-Usage .........
-### Command Format
-Cautions ......
-Usage ...veu...
-### Command Format
-Cautions ......
-Usage .........
-### Command Format
-\* o 0 0 0 0
-e e et e et XIv-11
-e ettt e e e e XIv-11
-Cee e c e XIv-11
-.............. XIv-12
-e st XIv-13
-c e e s e oo XIv-14
-T XIv-14
-c e e et e e .o XIV-15
-et ettt XIVv-15
-e ettt e XIv-16
-et et et XIV-16
-c e s et XIvV-16
-et s e et et XIv-16
-D XIv-17
-D XIvVv-17
-C ettt et XIv-17
-s ettt e . e XIvV-17
-c s et XIV-19
-c e ettt XIv-19
-e ettt XIV-19
+<!-- page 2 (front-matter table of contents, omitted) -->
+<!-- page 3 (front-matter table of contents, omitted) -->
+<!-- page 4 (front-matter table of contents, omitted) -->
+<!-- page 5 (front-matter table of contents, omitted) -->
+<!-- page 6 (front-matter table of contents, omitted) -->
+<!-- page 7 (front-matter table of contents, omitted) -->
+<!-- page 8 (front-matter table of contents, omitted) -->
+<!-- page 9 (front-matter table of contents, omitted) -->
+<!-- page 10 (front-matter table of contents, omitted) -->
+<!-- page 11 (front-matter table of contents, omitted) -->
+<!-- page 12 (front-matter table of contents, omitted) -->
+<!-- page 13 (front-matter table of contents, omitted) -->
 <!-- page 14 -->
 REFERENCE TABLE
 READY REFERENCE
 Command Page Number Command Page Number
-ABS. ... .l VIII-2 IFSTRING-DO........ wee.  IX-22
-ADRLST.........cc.ou.... XIv-19 IFSTRING-DO-ELSE....... IX-23
-```
-BUFFER........... ceeean VIi-7 IFSTRING-DO-ELSE DO.... IX-23
+ABS. ... .l VIII-2 IFSTRING-DO  wee.  IX-22
+ADRLST cc.ou  XIv-19 IFSTRING-DO-ELSE  IX-23
+BUFFER  ceeean VIi-7 IFSTRING-DO-ELSE DO  IX-23
 CALL. .t iininnennnn... IX-9 IFSTRING - DO - Null - ELSE.. IX-24
-CLOSE. . iviiinnnunnnn.. X-7 IFSTRING-ELSE.......... IX-21
-```
-
-0 o Iv-7 IFSTRING-ELSE-DO....... IX-22
-CPL .ttt e iin T I-1 IFSTRING-Null-ELSE..... IX-24
-CURB......iiiiinnnnn... XIv=-2 INCR. .ttt it e iiieiean, VII-7
-CURP...iiiiiiiinann. XIv=-2 INCREMENT.............. VIi-7
-CURS...... ... XIV-3 INTEGER.......ovvun.... VIi-2
-CURSOR.......ovuun... XIV=-2 LDATE. . i i i XIv-12
-DECODE........vuuu... XI-15 LEN. .. i e VIII-3
-DECR. ...t iiiinian... VII-7 LOAD. .. ettt i XIV-6
-DECREMENT.......ouu.... VII-7 LOOP..... et e et e IX-4
-DEFINE.. ..., VIi-6 LOOP WHILE............. IX-6
+CLOSE. . iviiinnnunnnn.. X-7 IFSTRING-ELSE  IX-21
+0 o Iv-7 IFSTRING-ELSE-DO  IX-22
+CPL .ttt e iin T I-1 IFSTRING-Null-ELSE  IX-24
+CURB  nnnnn... XIv=-2 INCR. .ttt it e iiieiean, VII-7
+CURP... nann. XIv=-2 INCREMENT  VIi-7
+CURS  ... XIV-3 INTEGER ovvun  VIi-2
+CURSOR ovuun... XIV=-2 LDATE. . i i i XIv-12
+DECODE vuuu... XI-15 LEN. .. i e VIII-3
+DECR. ...t  nian... VII-7 LOAD. .. ettt i XIV-6
+DECREMENT ouu  VII-7 LOOP  et e et e IX-4
+DEFINE.. ..., VIi-6 LOOP WHILE  IX-6
 DIRECT ... .viiinunun.. Iv-3 2 VIII-4
-DUMP. ... ittt XIV-5 MIN........ou.. e VIII-S
-EJECT.......oiivuun.n. IV-5 MOD....iiiiiiinnnnn... VIII-6
-ENCODE........iivuu.... XI-17 NOTE.......oivu.... see. XI-19
-END. ittt iiieei, III1-9 OPEN..... ... X-6
-END DO...ovvvnnnnnnnn.. IX-27 ORIGIN.....oivivnunn... XIV-9
-ENDFILE. .. nnn... X-8 PAGE EJECT............. IV-5
-END LOOP. . innnnnn... IX-8 POINT....oiiiininnn... XI-20
-```
-ENDREC. . ... nnnnn.. XII-2 PRINT OFF........vuu... IV-4
-ENTRY................ .. III-6 PRINT OFF,COM.......... Iv-4
-ENTRYPOINT...ivvenn.... V-3 PRINT ON........ovu.... IV-4
-EQUATE. ... ............. XIV-10 PUTR..... e et e st XIII-4
-```
-
-EXTERNAL............ eee V=2 C READ. .. iii e XI-9
-```
-FILE. .. ittt X-2 READB......civiun.. .. XII-4
-FORMAT. ... ...ivvinnnn.. XI-2 RECORD...ovennnnnn... XII~-2
-```
-
-FREE. ...... ..., XII1-7 RESET...uiveunun... e vean X-12
-FRER......c.iviuu... se. XIII-S RETRIEVE......viuunu... IX-12
-GETR. ittt i it ie e, XIII-3 RETURN........... ceeean IX-11
-GO TO. i iinnnnnn... eee  IX-3 RETURN TO..veueenvn.... IX-11
+DUMP. ... ittt XIV-5 MIN ou.. e VIII-S
+EJECT oiivuun.n. IV-5 MOD  nnnnn... VIII-6
+ENCODE iivuu  XI-17 NOTE oivu  see. XI-19
+END. ittt iiieei, III1-9 OPEN  ... X-6
+END DO...ovvvnnnnnnnn.. IX-27 ORIGIN oivivnunn... XIV-9
+ENDFILE. .. nnn... X-8 PAGE EJECT  IV-5
+END LOOP. . innnnnn... IX-8 POINT o ninnn... XI-20
+ENDREC. . ... nnnnn.. XII-2 PRINT OFF vuu... IV-4
+ENTRY  .. III-6 PRINT OFF,COM  Iv-4
+ENTRYPOINT...ivvenn  V-3 PRINT ON ovu  IV-4
+EQUATE. ...   XIV-10 PUTR  e et e st XIII-4
+EXTERNAL  eee V=2 C READ. .. iii e XI-9
+FILE. .. ittt X-2 READB civiun.. .. XII-4
+FORMAT. ... ...ivvinnnn.. XI-2 RECORD...ovennnnnn... XII--2
+FREE.   ..., XII1-7 RESET...uiveunun... e vean X-12
+FRER c.iviuu... se. XIII-S RETRIEVE viuunu... IX-12
+GETR. ittt i it ie e, XIII-3 RETURN  ceeean IX-11
+GO TO. i iinnnnnn... eee  IX-3 RETURN TO..veueenvn  IX-11
 GTIME. i iieenenennnn. XIv-11 REWIND..vvieieennnnn.. X-9
-HLDR................... XIII-S REWRITE. . ..., XI1-21
-HOLD....... ... ... . ... XII-7 ROUND....... ... .. ..., VIII-7
+HOLD  ... ... . ... XII-7 ROUND  ... .. ..., VIII-7
 D IX-15 SDATE. . ie it nnunn... XIiv-12
-IF-DO. ..t iiii ... IX-16 o VI-3
-IF-DO-ELSE.....cou..... IX-17 SETFORM................ X-10
+IF-DO. ..t   ... IX-16 o VI-3
+IF-DO-ELSE cou  IX-17 SETFORM  X-10
 IF-DO-ELSE DO...vuvuun.. IX-17 SGN ... ittt it iiieann, VIII-8
-IF-DO-Null-ELSE........ IX-18 SKIP. .. i iieennunnn.. X-11
+IF-DO-Null-ELSE  IX-18 SKIP. .. i iieennunnn.. X-11
 IF-ELSE..ieinnnennnn... IX-15 SPACE. ... iiinnnnnnn.. IV-6
-IF-ELSE DO......... /ee. IX-16 STOP. .t iiiinnnnnn... II1-7
-IF-Null-ELSE....v.v.... IX-18 STRING.....vvveennnn.. VI-4
-IF(X) et iiie s ieeieun IX-19 SUBROUTINE. ...0vuu.o.... IX--10
-S IX-21 SYSTEM..... ceesae ceeeaan II1-2
-IFS-DO0. . iitiiiiinnnn... IX-22 TABLE....... Ch e et VIi-8
+IF-ELSE DO  /ee. IX-16 STOP. .t  nnnnnn... II1-7
+IF-Null-ELSE v.v  IX-18 STRING vvveennnn.. VI-4
+IF(X) et iiie s ieeieun IX-19 SUBROUTINE. ...0vuu.o  IX--10
+S IX-21 SYSTEM  ceesae ceeeaan II1-2
+IFS-DO0. . iit nnnn... IX-22 TABLE  Ch e et VIi-8
 IFS-DO-ELSE. .. enn... IX-23 TBLGET . ettt et v i eennnnn. XIvV-16
-IFS-DO-ELSE DO...vuv..... IX-23 TBLPUT . ettt it e e ennnn XIVv-17
-IFS-DO-Null-ELSE....... IX-24 TITLE. ottt eeeann Iv-2
-IFS-ELSE....... Ceesaenn IX-21 WRITE........ ... XI-11
-IFS-ELSE DO.....v..... IX-22 WRITEB. . i eeinenennnnnn XII-16
-IFSTRING...........u... IX-21 WRITEN...........0uu.... XI-13
+IFS-DO-ELSE DO...vuv  IX-23 TBLPUT . ettt it e e ennnn XIVv-17
+IFS-DO-Null-ELSE  IX-24 TITLE. ottt eeeann Iv-2
+IFS-ELSE  Ceesaenn IX-21 WRITE  ... XI-11
+IFS-ELSE DO v  IX-22 WRITEB. . i eeinenennnnnn XII-16
+IFSTRING u... IX-21 WRITEN 0uu  XI-13
 <!-- page 15 -->
 ABS
 (VIII.1)
@@ -1533,9 +902,9 @@ GTIME (XIvV.6).
 CPL
 REFERENCE TABLE
 COMPATIBILITY
-I EEEE B REEBEEENEEEEEERE SRR EERERE R R ERE SRR RS RS REESEEEEREEREESESSERISESEERS]
+I   B REEBEEEN RE SRR EERERE R R ERE SRR RS RS REES REEREESESSERISESEERS]
 WARNING
-IZEE R R RS E RS EEREEEEREE R ER SRR RS R R R R R R R R R R EREESEEERNSSERERIEESERE;
+IZEE R R RS E RS EER REE R ER SRR RS R R R R R R R R R R EREESEEERNSSERERIEESERE;
 The latest version of CPL (12/81l) contains important differences
 from earlier versions. These differences include:
 1. Offsets - offsets must be in brackets to indicate assem-
@@ -1628,7 +997,7 @@ L3
 .'.000'00'0'..0".00.00.0.00.0.0.0.00.000000..00000000000000"
 'y PROGRAM L INKAGE
 ```
-.(..00'.'.0'.......QC..000.00.0000..'0.0.0.0.00'.0'09000..0ON
+.(..00'.'.0' QC..000.00.0000..'0.0.0.0.00'.0'09000..0ON
 .t
 ```
 
@@ -1679,7 +1048,7 @@ SENDREC
 .
 I'0000000000000000000000000'000000000000000000000000000000000
 L4 LOGIC
-'(.....00.0.0000..000.0....00'00.000000000000.0.0006..000000o
+'( 00.0.0000..000.0 00'00.000000000000.0.0006..000000o
 [ 2] :
 SENTRY
 .
@@ -1849,7 +1218,7 @@ CPL
 Sample Program
 B B PP et 0 00000000000 00000000 00000l teTtIeeErsetssesesesstcsesstosne
 FORMATS anND STORACE
-et .00'..".'..."0..'.'.."'.0..0'.'....'Q'..O..".....00.'.'000000'."00
+et .00'..".'..."0..'.'.."'.0..0'.' 'Q'..O.." 00.'.'000000'."00
 ot
 eFORMAT
 eFOKMAT
@@ -1874,6 +1243,7 @@ END e:e
 XAV Revision 03/15/83
 <!-- page 39 -->
 CPL
+## Chapter One: INTRODUCTION
 I.1 CPL
 CPL (Centurion Programming Language) is an English-orientated,
 complex computer language. While CPL bears similarities to
@@ -1989,6 +1359,7 @@ of the program. For additional information on .USE and .RUN see
 the Job Control Language Manual.
 <!-- page 42 -->
 CPL
+## Chapter Two: CPL CONCEPTS
 ### OVERVIEW
 Only certain types of data may be used in a computer program.
 Literals, variables and expressions are all means of structuring
@@ -2109,6 +1480,7 @@ brackets ([]) unless otherwise specified.
 I1-6
 <!-- page 48 -->
 CPL
+## Chapter Three: PROGRAM CONTROL
 ### OVERVIEW
 Certain commands control the set up of a program in addition to
 entry and exit. Code generated by these commands is mandatory
@@ -2394,6 +1766,7 @@ I11-10
 <!-- page 58 -->
 CpPU-5/CPU-6
 CPL
+## Chapter Four: COMPILER DIRECTIVES
 ### OVERVIEW
 Compiler directives are not part of the CPL progream. They are
 commands to the compiler and generate no code.
@@ -2501,16 +1874,7 @@ Iv.4.2 Command Format
 PAGE EJECT
 or
 EJECT
-<!-- page 63 -->
-SPACE
-IV.5 SPACE
-Iv.5.1 Usage
-The SPACE command causes the compiler to insert blank 1lines in
-the program listing.
-IV.5.2 Command Format
-SPACE n
-n - number of blank lines to be added
-to the program Iisting.
+<!-- page 63 (front-matter table of contents, omitted) -->
 <!-- page 64 -->
 Iv.6 COPY
 Iv.6.1 Usage
@@ -2634,6 +1998,7 @@ Iv-11
 <!-- page 69 -->
 CpPU-5/CPU-6
 CPL
+## Chapter Five: PROGRAM LINKAGE
 ### OVERVIEW
 Commonly used routines are often stored in a 1linker library.
 These external routines may be linked to other programs; key
@@ -2749,6 +2114,7 @@ subroutines/subprograms.
 For additional information see EXTERNAL (V.1)
 <!-- page 73 -->
 CPL
+## Chapter Six: RESERVING MEMORY
 ### OVERVIEW
 An executable program occupies a block of system memory when
 that program is loaded. This block of memory contains
@@ -2994,6 +2360,7 @@ need to be initialized prior to execution.
 vIi-9
 <!-- page 82 -->
 CPL
+## Chapter Seven: CPL ASSIGNMENT STATEMENTS
 ### OVERVIEW
 Utilizing the equal sign (=) as a substitution command,
 assignment statements are used to insert the wvalue of an
@@ -3034,7 +2401,7 @@ performed is saved. If the divisor of that division is a 4-byte
 integer, then the remainder 1is a 4-byte integer and that
 remainder is stored in @REM. If the divisor is a 6- or 8-byte
 integer, the remainder is a 6-byte integer stored in ?@REM.
-VIiIi-2
+V -2
 <!-- page 84 -->
 CPL
 Integer
@@ -3170,6 +2537,7 @@ is 1.
 VIIi-7
 <!-- page 89 -->
 CPL
+## Chapter Eight: FUNCTIONS
 ### OVERVIEW
 Built-in functions are subroutines which may be used in place of
 an integer variable in an integer expression. A built-in
@@ -3177,19 +2545,8 @@ function reference consists of the function-name followed by a
 left parenthesis, one or more arguments and a right parenthesis.
 Each argument may be an integer expression (containing built-in
 functions.
-VIIIi-1
-<!-- page 90 -->
-ABS
-VIII.1 ABS
-VIII.1l.1l Usage
-The ABS command evaluates the expression and returns the
-absolute value of that expression.
-An example of the ABS command would be:
-A = B + ABS(c)
-Each ABS command adds 8 bytes to program length.
-VIII.l.2 Command Format
-ABS (arg)
-arg - integer expression/integer literal.
+V -1
+<!-- page 90 (front-matter table of contents, omitted) -->
 <!-- page 91 -->
 LEN
 VIII.?2 LEN
@@ -3288,6 +2645,7 @@ arg - integer expression sariable or
 literals.
 <!-- page 97 -->
 CPL
+## Chapter Nine: TRANSFER OF CONTROL
 ### OVERVIEW
 The operating system normally executes CpPL commands in
 sequential order. There are times, however, when this is not
@@ -4146,17 +3504,10 @@ IX.11.3 Cautions
 l. The "action" portion of an ELSE may not be an
 IFSTRING or IF command. For additional infor-
 mation see Command Format, IX.1ll.2.
-<!-- page 123 -->
-END DO
-IX.12 END DO
-IX.12.1 Usage
-The END DO command terminates any of the forms of the IF or
-IFSTRING/IFS statements which contain the DO option. For
-additional information see IF (IX.10) and IFSTRING/IFS (IX.l1ll).
-IX.12.2 Command Format
-END DO
+<!-- page 123 (front-matter table of contents, omitted) -->
 <!-- page 124 -->
 CPL
+## Chapter Ten: FILE DEFINITION AND CONTROL
 ### OVERVIEW
 All forms of program input and output in CPL are controlled
 through the System and Program Logical Units. No physical
@@ -4361,7 +3712,7 @@ Lownan
 fLavws
 aduoax
 2MON
-:.....\_\_""m
+: \_\_""m
 INON
 NN
 1M1
@@ -4678,7 +4029,7 @@ VSI :
 RELATIVE : FILE name: SYSccc, RND, CLASS=1, RECSIZ=400, KEY=integer,
 SECTOR : FILTYP=t, LSR=5
 1/0 :
-PROGRAMMER : FILE name: SYSccc...............................LSR=label
+PROGRAMMER : FILE name: SYSccc LSR=label
 WRITTEN :
 LSR : NOTE: Since the programmer 'creates this logical
 : Service Routine (LSR) the body of the
@@ -4898,18 +4249,7 @@ a CPL statement) in which records
 are to be skipped;
 n - the number of records to skip
 Revised 3/15/83
-<!-- page 138 -->
-RESET
-X.8 RESET
-X.8.1 Usage
-The RESET command is used to rewind a tape to the beginning of
-the current file. This command is used only with tape files
-(CLASS=4) and can be used only with expansion D.
-This command adds five bytes to a program.
-X.8.2 Command Format
-RESET file [,file,file,...]
-file - label of a file (defined in
-a CPL statement) to be reset
+<!-- page 138 (front-matter table of contents, omitted) -->
 <!-- page 139 -->
 CPL
 ## Chapter Eleven: FORMATTED INPUT/OUTPUT
@@ -5334,12 +4674,7 @@ The value of STATUS is affected by each WRITEN/WRITN command.
 Possible STATUS values are 0 (Normal Completion, 2 (I/O Error or
 Format Error) and 3 (End-of-Medium on Output).
 X1-13 Revision 03/15/83
-<!-- page 152 -->
-CPL
-WRITEN/WRITN
-XI.4.3 Cautions
-l. Do not use WRITEN/WRITN with an "A" Type disk
-file.
+<!-- page 152 (front-matter table of contents, omitted) -->
 <!-- page 153 -->
 DECODE
 XI.5 DECODE
@@ -5575,6 +4910,7 @@ the NOTE and POINT commands. For additional
 information see NOTE (XI.7) and POINT (XI.8).
 <!-- page 161 -->
 CPL
+## Chapter Twelve: BINARY INPUT/OUTPUT
 OVEKVIEW
 Binary Input/Output - unlike Formatted Input/Qutput - makes a
 byte-for-byte transfer of data without differentiating between
@@ -5993,6 +5329,7 @@ Qutside of File or Invalid Key). The value of STATUS after a
 call to FRER is always equal to 0 (Hold Successful).
 <!-- page 174 -->
 CPL
+## Chapter Fourteen: MISCELLANEOUS COMMANDS
 XIv-1
 <!-- page 175 -->
 CURP/
@@ -6576,11 +5913,8 @@ algorithm = XIII-1
 APLIB - I-3, XI1I-1, XIII-3, XIII-4, XIII-S
 argument - XII-1
 g - Ix-2, IX-10
-```
 @cpL - II1I-3, V-3
 @REM - VII-2
-```
-
 ASCII data - see data, ASCII
 assembler - 1-2/1-3, I11-2/11I-5, Iv-3/
 Iv-4, Ix-14, XIV-19
@@ -6597,11 +5931,8 @@ brackets - 1I1-6, IX-9, XI-15, xI-18, XIv-6
 buffer - IV-10, VI-1, X-2/X-4, X-6, X=7,
 Xx-8, X-9, X-10, XI-7, xI-9, XI-11l/
 XI-12, XI-21
-```
 BUFFER - VI-7 (command), X-2/%X-4
 BUFFER=n - X-2/X-4
-```
-
 buffer, program line - III-4
 o
 CALL - I-3, 1IX-9 (command), 1IX-10, IX-11, IX-12/1%-14, Ix-1%, IX-21, XIIlI-3, XIv-6, XIv-14
@@ -6662,7 +5993,7 @@ end-of-sector mark - XI-11
 ENTRY - 1II1-4, I1I-5, 111-6 (command)
 entrypoint - v-1 (definition), V-2/V-4
 ENTRYPOINT - V-1/V-4, V-3 (command), IX-10
-equal sign (=) - VII-1, VIiIi-2
+equal sign (=) - VII-1, V -2
 EQUATE - X1IV-10 ({command)
 error, format - see formaet error
 error, syntax - See syntax error
@@ -6805,11 +6136,8 @@ Logical Service Routine (LSR) - X-2, X-4/
 X-5, XII-1
 logical unit - see unit, logical
 Logical Unit Block - 1II-7
-```
 LOOP - IX-4 (command), IX-7, Ix-8
 LOOP WHILE - IX-5, IX-6 (command), IX-8
-```
-
 lowercase - IX-26
 LST - 1-2
 M

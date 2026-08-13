@@ -27,40 +27,7 @@
 - [STREAMER](#streamer)
 - [BOOT TAPE](#boot-tape)
 
-<!-- page 1 -->
-UTILITY MANUAL
-Section
-### Introduction
-COPUT
-Conversion Utilities
-CcoPsC
-COPCS
-COPCSC
-COPISC
-COoP4SsC
-COoP6SC
-PCVT
-ALOCS
-DSORT
-FILMV
-OPT
-RINT/Z?RINT
-SMCB
-TRACE
-TRACT
-VCOPY
-WTAG/ ?WTAG
-@REORG
-SELREST
-XMIT/RECV (Software available
-for purchase)
-XNEW
-BISYNC (Software available
-for purchase)
-KTEST
-Streamer Tape/Finch Systems
-Revised 6/15/83
-P
+<!-- page 1 (front-matter table of contents, omitted) -->
 <!-- page 2 -->
 CENTURION
 Includes 12/88/83 Revisions
@@ -1821,7 +1788,7 @@ ENTER - number of CMD platters on this drive.
 This message will only display if a CMD drive is detected to Dbe on-line. The number of platters must be entered to prevent @REORG from accessing non-existant platters (on-line test) which causes the drive to go into a "fault" condition. The only way to reset this condition is to re-power the drive.
 8. CRT will display system status using @REORG's configuration.
 VOL
-0 CCCCCCCCCC  NN/NN/NN
+0    NN/NN/NN
 And the prompt
 Enter source disk
 Enter
