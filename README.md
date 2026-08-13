@@ -32,6 +32,19 @@ Then: `telnet localhost 2324` → `H1` → set date/time → `CRT0 READY`.
 
 See [`docs/BOOTING-CENTOS.md`](docs/BOOTING-CENTOS.md) for the full procedure.
 
+## Ports & services
+
+| Port | Service | Protocol | What it's for |
+|---|---|---|---|
+| 2323 | Control panel / console | Telnet | Front-panel registers, LEDs, run/halt/step control |
+| 2324 | Terminal 0 (CRT 0) | Telnet | The main CENTOS terminal (native Centurion CRT) |
+| 2325 | Terminal 1 (CRT 1) | Telnet | Second CRT terminal |
+| 2326 | Disk manager | Telnet | Load/create/export disk images |
+| 42646 | Browser UI | WebSocket | Rich frontend (open `cen.html` → Remote, or `cen-server.html`) |
+
+The server console (`npm start` terminal) accepts `r`(un) `h`(alt) `s`(tep)
+`q`(uit) and `reset`.
+
 ## Documentation
 
 | Doc | Covers |
